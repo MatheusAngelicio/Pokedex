@@ -11,7 +11,7 @@ class Application : Application() {
 
         startKoin {
             androidContext(this@Application)
-            modules(com.example.pokedex.presentation.di.modules)
+            modules(com.example.pokedex.di.modules)
         }
     }
 

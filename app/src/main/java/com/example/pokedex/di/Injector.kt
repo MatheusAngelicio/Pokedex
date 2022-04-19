@@ -1,4 +1,4 @@
-package com.example.pokedex.presentation.di
+package com.example.pokedex.di
 
 import com.example.pokedex.presentation.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
