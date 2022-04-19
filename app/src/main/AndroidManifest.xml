@@ -11,8 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedex">
         <activity
+            android:name=".presentation.onboarding.OnboardingActivity"
+            android:exported="true" />
+        <activity
             android:name=".presentation.splash.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
