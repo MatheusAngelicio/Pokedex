@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Pokedex</string>
+
+    <!--Onboarding-->
+
+    <string name="button_start_home">Play</string>
 </resources>
