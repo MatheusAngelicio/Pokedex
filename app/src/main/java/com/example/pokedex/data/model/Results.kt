@@ -1,4 +1,4 @@
-package com.example.pokedex.data
+package com.example.pokedex.data.model
 
 
 data class Results(

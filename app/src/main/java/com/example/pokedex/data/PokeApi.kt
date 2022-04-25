@@ -1,5 +1,6 @@
 package com.example.pokedex.data
 
+import com.example.pokedex.data.model.PokemonList
 import retrofit2.http.GET
 import retrofit2.http.Query
 

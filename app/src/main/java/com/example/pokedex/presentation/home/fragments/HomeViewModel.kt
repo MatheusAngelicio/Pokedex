@@ -1,12 +1,12 @@
 package com.example.pokedex.presentation.home.fragments
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.data.PokemonRepository
-import com.example.pokedex.data.Results
+import com.example.pokedex.data.model.Results
+import com.example.pokedex.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,21 +15,23 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
 
-    init {
-        getCharacters(20,0)
-    }
-
     private val _responseApi = MutableLiveData<List<Results>>()
     val responseApi: LiveData<List<Results>> = _responseApi
 
+    val isLoading = MutableLiveData(false)
 
-    fun getCharacters(limit: Int, offset: Int) = viewModelScope.launch {
-        runCatching {
-            repository.getPokemonList(limit, offset)
-        }.onSuccess { pokemonList ->
-            Log.d("DEU BOA", "AAAAAAAAAAAE $pokemonList")
-        }.onFailure {
-            Log.d("MERDA", "DEU MERDA $it")
+
+    fun loadPokemonPaginated() {
+        viewModelScope.launch {
+            isLoading.value = true
+            val result = repository.getPokemonList(20, 0)
+            when (result) {
+                is Resource.Success -> {
+                   _responseApi.value = result.data?.results
+                    isLoading.value = false
+                }
+                is Resource.Error -> Unit
+            }
         }
     }
 }

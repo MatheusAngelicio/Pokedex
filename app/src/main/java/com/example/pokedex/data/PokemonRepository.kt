@@ -1,7 +1,7 @@
 package com.example.pokedex.data
 
+import com.example.pokedex.data.model.PokemonList
 import com.example.pokedex.util.Resource
-import dagger.hilt.android.scopes.ActivityScoped
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ class PokemonRepository
         val response = try {
             api.getPokemonList(limit, offset)
         } catch (e: Exception) {
-            return Resource.Error("An unknow error occured")
+            return Resource.Error("An unknow error occured : $e")
         }
         return Resource.Success(response)
     }
