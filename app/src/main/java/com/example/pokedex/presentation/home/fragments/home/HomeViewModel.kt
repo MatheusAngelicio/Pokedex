@@ -1,4 +1,4 @@
-package com.example.pokedex.presentation.home.fragments
+package com.example.pokedex.presentation.home.fragments.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
