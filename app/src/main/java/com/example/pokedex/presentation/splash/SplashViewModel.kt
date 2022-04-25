@@ -2,8 +2,12 @@ package com.example.pokedex.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SplashViewModel: ViewModel() {
+@HiltViewModel
+class SplashViewModel
+@Inject constructor() : ViewModel() {
 
     val backgroundList = intArrayOf(
         R.drawable.charizard,
@@ -15,7 +19,6 @@ class SplashViewModel: ViewModel() {
         R.drawable.centiskorch,
         R.drawable.rillaboom
     )
-
 
 
 }

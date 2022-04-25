@@ -3,18 +3,20 @@ package com.example.pokedex.presentation.splash
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivitySplashBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.onboarding.OnboardingActivity
 import com.example.pokedex.util.SPLASH_DISPLAY_TIME
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
 
-    private val viewModel by viewModel<SplashViewModel>()
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

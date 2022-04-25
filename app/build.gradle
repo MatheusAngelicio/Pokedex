@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-android-extensions'
 }
 
@@ -50,11 +52,17 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
     implementation "com.google.code.gson:gson:$gson"
 
-    // Koin for Android
-    implementation "org.koin:koin-android:$koin"
-    implementation "org.koin:koin-core:$koin"
-    implementation "org.koin:koin-androidx-scope:$koin"
-    implementation "org.koin:koin-androidx-viewmodel:$koin"
+    //HILT
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+
+    //RETROFRIT
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // Glide (Image loader)
     implementation "com.github.bumptech.glide:glide:$glide"
@@ -91,4 +99,5 @@ dependencies {
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
 }
