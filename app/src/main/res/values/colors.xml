@@ -9,6 +9,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="blue">#0000FF</color>
+    <color name="black_translucent">#80000000</color>
+    <color name="black_80">#CC000000</color>
+    <color name="green_pokedex">#30fb05</color>
+
 
     <color name="red">#fb0505</color>
 </resources>

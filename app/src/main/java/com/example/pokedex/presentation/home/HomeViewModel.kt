@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.data.PokemonRepository
+import com.example.pokedex.data.remote.PokemonRepository
 import com.example.pokedex.data.model.Results
 import com.example.pokedex.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,6 @@ class HomeViewModel
     val responseApi: LiveData<List<Results>> = _responseApi
 
     val isLoading = MutableLiveData(false)
-
 
     fun loadPokemonPaginated() {
         viewModelScope.launch {

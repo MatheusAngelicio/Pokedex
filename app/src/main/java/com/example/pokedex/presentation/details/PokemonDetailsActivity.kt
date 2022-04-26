@@ -4,14 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Results
 import com.example.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.util.EXTRA_RESULTS
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PokemonDetailsActivity :
     BaseActivity<ActivityPokemonDetailsBinding>(R.layout.activity_pokemon_details) {
+
+    private val viewModel: PokemonDetailsViewModel by viewModels()
 
     companion object {
         fun getStartIntent(context: Context, results: Results?): Intent =

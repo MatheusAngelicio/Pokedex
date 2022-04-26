@@ -7,4 +7,7 @@
     <dimen name="default_margin">16dp</dimen>
     <dimen name="ultra_margin">26dp</dimen>
 
+    <!--Loader-->
+    <dimen name="loader">200dp</dimen>
+
 </resources>

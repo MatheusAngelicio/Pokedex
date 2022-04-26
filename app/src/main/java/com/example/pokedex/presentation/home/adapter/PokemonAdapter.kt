@@ -1,4 +1,4 @@
-package com.example.pokedex.presentation.home
+package com.example.pokedex.presentation.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

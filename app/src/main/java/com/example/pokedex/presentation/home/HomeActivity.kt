@@ -4,17 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Results
-import com.example.pokedex.databinding.ActivityMainBinding
+import com.example.pokedex.databinding.ActivityHomeBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.details.PokemonDetailsActivity
+import com.example.pokedex.presentation.home.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -34,7 +34,9 @@ class HomeActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(this) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            //binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            binding.loader.visibility = if (it) View.VISIBLE else View.GONE
+
         }
 
         viewModel.responseApi.observe(this) { pokemonList ->

@@ -1,7 +1,8 @@
 package com.example.pokedex.di
 
 import com.example.pokedex.BuildConfig
-import com.example.pokedex.data.PokeApi
+import com.example.pokedex.data.remote.PokeApi
+import com.example.pokedex.data.remote.PokemonRepository
 import com.example.pokedex.util.TIMEOUT_SECONDS
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
