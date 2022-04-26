@@ -3,14 +3,11 @@ package com.example.pokedex.presentation.onboarding
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivityOnboardingBinding
 import com.example.pokedex.presentation.base.BaseActivity
-import com.example.pokedex.presentation.home.MainActivity
+import com.example.pokedex.presentation.home.HomeActivity
 
 class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 
@@ -30,7 +27,7 @@ class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
 
     private fun initViews() {
         binding.startHomeButton.setOnClickListener {
-            startActivity(MainActivity.getStartIntent(this))
+            startActivity(HomeActivity.getStartIntent(this))
             finish()
         }
     }
