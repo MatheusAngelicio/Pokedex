@@ -10,6 +10,7 @@ import com.example.pokedex.R
 import com.example.pokedex.data.model.Results
 import com.example.pokedex.databinding.ActivityMainBinding
 import com.example.pokedex.presentation.base.BaseActivity
+import com.example.pokedex.presentation.details.PokemonDetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,8 +45,12 @@ class HomeActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun setupRecyclerView(pokemonList: List<Results>) {
         binding.pokemonRecyclerView.apply {
-            pokeAdapter.data = pokemonList.toMutableList()
             adapter = pokeAdapter
+            pokeAdapter.data = pokemonList.toMutableList()
+
+            pokeAdapter.onItemClickListener = {
+                startActivity(PokemonDetailsActivity.getStartIntent(context, it))
+            }
         }
 
     }

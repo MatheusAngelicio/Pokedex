@@ -31,6 +31,7 @@ class PokemonAdapter : BaseRecyclerAdapter<Results, PokemonAdapter.PokemonViewHo
                 pokemon.imageUrl = formattedNumber(pokemon.number)
                 namePokemon.text = pokemon.name
                 SetupImageGlide.setImageUrl(pokemon.imageUrl, imagePokemon, imageProgress, context)
+                container.setOnClickListener { onItemClickListener?.invoke(pokemon) }
             }
         }
     }
