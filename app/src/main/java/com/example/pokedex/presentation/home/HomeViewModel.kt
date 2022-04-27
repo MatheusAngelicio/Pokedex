@@ -20,6 +20,10 @@ class HomeViewModel
 
     val isLoading = MutableLiveData(false)
 
+    init {
+        loadPokemonPaginated()
+    }
+
     fun loadPokemonPaginated() {
         viewModelScope.launch {
             isLoading.value = true
@@ -29,7 +33,7 @@ class HomeViewModel
                    _responseApi.value = result.data?.results
                     isLoading.value = false
                 }
-                is Resource.Error -> Unit
+                is Resource.Error -> Unit // Fazer Dialog de erro generico
             }
         }
     }

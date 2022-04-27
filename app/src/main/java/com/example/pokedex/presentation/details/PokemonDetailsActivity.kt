@@ -27,17 +27,30 @@ class PokemonDetailsActivity :
 
     private var resultsData: Results? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         receiveData()
+        setupPokemonInfo()
 
-        Toast.makeText(this, resultsData!!.name, Toast.LENGTH_SHORT).show()
 
     }
 
     private fun receiveData() {
         resultsData = intent?.getSerializableExtra(EXTRA_RESULTS) as Results?
+    }
+
+    private fun setupPokemonInfo() {
+        resultsData?.let {
+            it.number?.let { id -> viewModel.getPokemonById(id) }
+        }
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.getPokemonProperty.observe(this) {
+            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+        }
     }
 }
