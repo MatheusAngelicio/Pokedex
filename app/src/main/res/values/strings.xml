@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">Pokedex</string>
 
-    <!--Onboarding-->
-
     <string name="button_start_home">Play</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="pokemon_hp">HPT</string>
+    <string name="pokemon_atk">ATK</string>
+    <string name="pokemon_def">DEF</string>
+    <string name="pokemon_spa">SPA</string>
+    <string name="pokemon_spd">SPD</string>
+    <string name="pokemon_spe">SPE</string>
+    <string name="pokemon_status_progress">"%d/200</string>
+
+
+    <string name="pokemon_height">%s M</string>
+    <string name="pokemon_weight">%s KG</string>
 </resources>

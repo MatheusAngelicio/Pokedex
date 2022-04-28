@@ -6,10 +6,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.pokedex.R
+import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.model.Results
+import com.example.pokedex.data.model.Types
 import com.example.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.example.pokedex.presentation.base.BaseActivity
+import com.example.pokedex.presentation.details.adapter.TypePokemonAdapter
 import com.example.pokedex.util.EXTRA_RESULTS
+import com.example.pokedex.util.SetupImageGlide
+import com.example.pokedex.util.convertValue
+import com.example.pokedex.util.formattedNumber
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,12 +32,13 @@ class PokemonDetailsActivity :
     }
 
     private var resultsData: Results? = null
+    private val typeList: TypePokemonAdapter by lazy { TypePokemonAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         receiveData()
-        setupPokemonInfo()
+        setupPokemonId()
 
 
     }
@@ -40,17 +47,45 @@ class PokemonDetailsActivity :
         resultsData = intent?.getSerializableExtra(EXTRA_RESULTS) as Results?
     }
 
-    private fun setupPokemonInfo() {
+    private fun setupPokemonId() {
         resultsData?.let {
-            it.number?.let { id -> viewModel.getPokemonById(id) }
+            it.number?.let { number -> viewModel.getPokemonById(number) }
         }
 
         observeViewModel()
     }
 
+    private fun setupPokemonType(types: List<Types>) {
+        typeList.data = types.toMutableList()
+        binding.recyclerViewType.adapter = typeList
+    }
+
     private fun observeViewModel() {
         viewModel.getPokemonProperty.observe(this) {
-            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            setupPokemonData(it)
+        }
+
+        viewModel.error.observe(this) {
+            if (it) Toast.makeText(this, "Algo deu errado", Toast.LENGTH_LONG).show()
         }
     }
+
+    private fun setupPokemonData(pokemon: Pokemon) {
+        binding.apply {
+            resultsData?.let { result ->
+                result.imageUrl = formattedNumber(result.number)
+                pokemonName.text = pokemon.name
+                weightPokemon.text =
+                    getString(R.string.pokemon_weight, convertValue(pokemon.weight))
+                heightPokemon.text =
+                    getString(R.string.pokemon_height, convertValue(pokemon.height))
+                SetupImageGlide.setImageUrl(
+                    result.imageUrl, imagePokemon, imageProgress, this@PokemonDetailsActivity
+                )
+            }
+            pokemon.types?.let { setupPokemonType(it) }
+        }
+    }
+
+
 }

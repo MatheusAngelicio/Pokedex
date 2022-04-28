@@ -33,7 +33,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(this) {
-            //binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
             binding.loader.visibility = if (it) View.VISIBLE else View.GONE
 
         }

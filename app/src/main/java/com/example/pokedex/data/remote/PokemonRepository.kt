@@ -2,7 +2,6 @@ package com.example.pokedex.data.remote
 
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.model.PokemonList
-import com.example.pokedex.data.remote.PokeApi
 import com.example.pokedex.util.Resource
 import java.lang.Exception
 import javax.inject.Inject

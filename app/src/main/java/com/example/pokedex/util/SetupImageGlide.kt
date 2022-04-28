@@ -30,7 +30,7 @@ object SetupImageGlide {
                     isFirstResource: Boolean
                 ): Boolean {
                     imageView.setImageResource(R.drawable.pikachu_surprised)
-                    progressBar.visibility = View.GONE
+                    progressBar.gone()
                     return false
                 }
 
@@ -41,7 +41,7 @@ object SetupImageGlide {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    progressBar.visibility = View.GONE
+                    progressBar.gone()
                     return false
                 }
             }).into(imageView)

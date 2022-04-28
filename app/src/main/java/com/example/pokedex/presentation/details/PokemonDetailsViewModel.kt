@@ -1,5 +1,6 @@
 package com.example.pokedex.presentation.details
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,9 @@ class PokemonDetailsViewModel
     private val _getPokemonProperty = MutableLiveData<Pokemon>()
     val getPokemonProperty: LiveData<Pokemon> = _getPokemonProperty
 
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean> = _error
+
 
     fun getPokemonById(id: Int) {
         viewModelScope.launch {
@@ -25,10 +29,12 @@ class PokemonDetailsViewModel
             when (pokemon) {
                 is Resource.Success -> {
                     pokemon.data?.let {
-                        _getPokemonProperty.value = it
+                        _getPokemonProperty.postValue(it)
                     }
                 }
-                is Resource.Error -> Unit // Fazer Dialog de erro generico
+                is Resource.Error -> {
+                    _error.postValue(true)
+                }
             }
         }
     }
