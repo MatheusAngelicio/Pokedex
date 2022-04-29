@@ -4,14 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Results
 import com.example.pokedex.databinding.ActivityHomeBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.details.PokemonDetailsActivity
 import com.example.pokedex.presentation.home.adapter.PokemonAdapter
+import com.example.pokedex.util.QUANTITY
+import com.example.pokedex.util.currency.PaginationListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_home.view.*
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -28,6 +33,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         super.onCreate(savedInstanceState)
 
         observeViewModel()
+        setupRecyclerView()
 
     }
 
@@ -38,19 +44,29 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         }
 
         viewModel.responseApi.observe(this) { pokemonList ->
-            setupRecyclerView(pokemonList)
+            pokeAdapter.data = pokemonList.toMutableList()
+
         }
 
     }
 
-    private fun setupRecyclerView(pokemonList: List<Results>) {
+    private fun setupRecyclerView() {
         binding.pokemonRecyclerView.apply {
             adapter = pokeAdapter
-            pokeAdapter.data = pokemonList.toMutableList()
 
             pokeAdapter.onItemClickListener = {
                 startActivity(PokemonDetailsActivity.getStartIntent(context, it))
             }
+
+            addOnScrollListener(object : PaginationListener(layoutManager as LinearLayoutManager, QUANTITY){
+                override fun loadMoreItems() {
+                    viewModel.limit += QUANTITY
+                    viewModel.loadPokemonPaginated()
+                }
+
+                override val isLoading: Boolean get() = false
+
+            })
         }
 
     }

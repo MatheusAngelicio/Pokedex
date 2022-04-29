@@ -20,6 +20,9 @@ class HomeViewModel
 
     val isLoading = MutableLiveData(false)
 
+    private var offSet: Int = 0
+    var limit: Int = 20
+
     init {
         loadPokemonPaginated()
     }
@@ -27,7 +30,7 @@ class HomeViewModel
     fun loadPokemonPaginated() {
         viewModelScope.launch {
             isLoading.value = true
-            val result = repository.getPokemonList(20, 0)
+            val result = repository.getPokemonList(limit, offSet)
             when (result) {
                 is Resource.Success -> {
                    _responseApi.value = result.data?.results

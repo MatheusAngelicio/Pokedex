@@ -4,6 +4,7 @@ const val SPLASH_DISPLAY_TIME = 2000
 const val TIMEOUT_SECONDS = 30L
 
 const val EXTRA_RESULTS = "EXTRA_RESULTS"
+const val QUANTITY = 20
 
 const val HP = 0
 const val ATK = 1
