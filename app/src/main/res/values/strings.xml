@@ -2,6 +2,8 @@
     <string name="app_name">Pokedex</string>
 
     <string name="button_start_home">Play</string>
+    <string name="try_again">Try Again</string>
+    <string name="ops_error">Oooooops Something went wrong</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="pokemon_hp">HPT</string>

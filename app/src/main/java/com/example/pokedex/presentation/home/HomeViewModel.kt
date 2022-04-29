@@ -18,6 +18,9 @@ class HomeViewModel
     private val _responseApi = MutableLiveData<List<Results>>()
     val responseApi: LiveData<List<Results>> = _responseApi
 
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean> = _error
+
     val isLoading = MutableLiveData(false)
 
     private var offSet: Int = 0
@@ -35,8 +38,11 @@ class HomeViewModel
                 is Resource.Success -> {
                    _responseApi.value = result.data?.results
                     isLoading.value = false
+                    _error.postValue(false)
                 }
-                is Resource.Error -> Unit // Fazer Dialog de erro generico
+                is Resource.Error -> {
+                    _error.postValue(true)
+                }
             }
         }
     }

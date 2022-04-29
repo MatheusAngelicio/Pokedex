@@ -46,5 +46,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <include
+            android:id="@+id/empty_state"
+            layout="@layout/home_empty_state"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

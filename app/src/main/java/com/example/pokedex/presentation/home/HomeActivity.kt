@@ -16,9 +16,12 @@ import com.example.pokedex.presentation.details.PokemonDetailsActivity
 import com.example.pokedex.presentation.home.adapter.PokemonAdapter
 import com.example.pokedex.util.QUANTITY
 import com.example.pokedex.util.currency.PaginationListener
+import com.example.pokedex.util.gone
 import com.example.pokedex.util.showConfirmationDialog
+import com.example.pokedex.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.view.*
+import kotlinx.android.synthetic.main.home_empty_state.view.*
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -36,12 +39,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
         observeViewModel()
         setupRecyclerView()
+        initViews()
 
     }
 
+    private fun initViews() {
+        binding.apply {
+            emptyState.try_again.setOnClickListener { viewModel.loadPokemonPaginated() }
+        }
+    }
+
     override fun onBackPressed() {
-        showConfirmationDialog(
-            getString(R.string.dialog_title),
+        showConfirmationDialog(getString(R.string.dialog_title),
             getString(R.string.dialog_message),
             true,
             { super.onBackPressed() })
@@ -55,26 +64,42 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         viewModel.responseApi.observe(this) { pokemonList ->
             pokeAdapter.data = pokemonList.toMutableList()
         }
+
+        viewModel.error.observe(this) { error ->
+            setupLayoutError(error)
+        }
     }
 
     private fun setupRecyclerView() {
         binding.pokemonRecyclerView.apply {
             adapter = pokeAdapter
-
             pokeAdapter.onItemClickListener = {
                 startActivity(PokemonDetailsActivity.getStartIntent(context, it))
             }
 
-            addOnScrollListener(object : PaginationListener(layoutManager as LinearLayoutManager, QUANTITY){
+            addOnScrollListener(object :
+                PaginationListener(layoutManager as LinearLayoutManager, QUANTITY) {
                 override fun loadMoreItems() {
                     viewModel.limit += QUANTITY
                     viewModel.loadPokemonPaginated()
                 }
-
                 override val isLoading: Boolean get() = false
-
             })
         }
+    }
 
+    private fun setupLayoutError(error: Boolean) {
+        binding.apply {
+            if (error) {
+                loader.gone()
+                emptyState.visible()
+                imageView.gone()
+                pokemonRecyclerView.gone()
+            } else {
+                emptyState.gone()
+                imageView.visible()
+                pokemonRecyclerView.visible()
+            }
+        }
     }
 }
