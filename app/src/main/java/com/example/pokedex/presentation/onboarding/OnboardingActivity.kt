@@ -28,6 +28,7 @@ class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
     private fun initViews() {
         binding.startHomeButton.setOnClickListener {
             startActivity(HomeActivity.getStartIntent(this))
+            if (mp != null) mp?.stop()
             finish()
         }
     }
