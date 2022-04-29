@@ -17,6 +17,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", '"https://pokeapi.co/"'
+        buildConfigField "String", "API", '"api/"'
+        buildConfigField "String", "VERSION_API", '"v2/"'
+        buildConfigField "String", "API_KEY", '"DEMO_KEY"'
     }
 
     dataBinding {
@@ -27,6 +32,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "https://pokeapi.co/"
+            buildConfigField "String", "API_KEY", "DEMO_KEY"
         }
     }
     compileOptions {
