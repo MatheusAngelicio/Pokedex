@@ -15,4 +15,5 @@
 
     <string name="pokemon_height">%s M</string>
     <string name="pokemon_weight">%s KG</string>
+    <string name="pokemon_number">#%s %S</string>
 </resources>
