@@ -22,18 +22,22 @@ class PokemonDetailsViewModel
     private val _error = MutableLiveData<Boolean>()
     val error: LiveData<Boolean> = _error
 
+    val isLoading = MutableLiveData(false)
 
     fun getPokemonById(id: Int) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val pokemon = repository.getPokemonById(id)
             when (pokemon) {
                 is Resource.Success -> {
                     pokemon.data?.let {
                         _getPokemonProperty.postValue(it)
                     }
+                    isLoading.postValue(false)
                 }
                 is Resource.Error -> {
                     _error.postValue(true)
+                    isLoading.postValue(false)
                 }
             }
         }

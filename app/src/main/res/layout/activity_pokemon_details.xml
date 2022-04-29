@@ -4,14 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_pokemon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red"
-        android:paddingStart="20dp"
-        android:paddingTop="80dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="20dp"
-        tools:context=".presentation.details.PokemonDetailsActivity">
+        tools:context=".presentation.details.PokemonDetailsActivity"
+        tools:background="@color/blue">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -20,6 +17,10 @@
             android:fillViewport="true"
             android:orientation="vertical"
             android:padding="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -162,6 +163,15 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <include
+            android:id="@+id/loader"
+            layout="@layout/loader_layout"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

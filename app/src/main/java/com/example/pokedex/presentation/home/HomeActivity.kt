@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,15 +40,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(this) {
-            binding.loader.visibility = if (it) View.VISIBLE else View.GONE
-
+            binding.loader.visibility = if (it) VISIBLE else GONE
         }
 
         viewModel.responseApi.observe(this) { pokemonList ->
             pokeAdapter.data = pokemonList.toMutableList()
-
         }
-
     }
 
     private fun setupRecyclerView() {

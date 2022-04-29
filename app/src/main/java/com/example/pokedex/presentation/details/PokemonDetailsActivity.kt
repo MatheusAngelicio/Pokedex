@@ -3,6 +3,7 @@ package com.example.pokedex.presentation.details
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.pokedex.R
@@ -14,6 +15,7 @@ import com.example.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.details.adapter.TypePokemonAdapter
 import com.example.pokedex.util.*
+import com.example.pokedex.util.GradientUtil.Companion.getGradientColor
 import com.skydoves.progressview.ProgressView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,7 @@ class PokemonDetailsActivity :
 
     private var resultsData: Results? = null
     private val typeList: TypePokemonAdapter by lazy { TypePokemonAdapter() }
+    private val gradientColors: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +70,11 @@ class PokemonDetailsActivity :
         viewModel.error.observe(this) {
             if (it) Toast.makeText(this, "Algo deu errado", Toast.LENGTH_LONG).show()
         }
+
+        viewModel.isLoading.observe(this) {
+            binding.loader.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
     }
 
     private fun setupPokemonData(pokemon: Pokemon) {
@@ -82,7 +90,13 @@ class PokemonDetailsActivity :
                     result.imageUrl, imagePokemon, imageProgress, this@PokemonDetailsActivity
                 )
             }
-            pokemon.types?.let { setupPokemonType(it) }
+            pokemon.types?.let {
+                setupPokemonType(it)
+                it.forEach { type ->
+                    gradientColors.addAll(listOf(getGradientColor(type.type?.name)))
+                    setupBackground(type.type?.name)
+                }
+            }
             pokemon.stats?.let { setupPokemonStats(it) }
         }
     }
@@ -101,6 +115,12 @@ class PokemonDetailsActivity :
     private fun setupProgressStats(view: ProgressView, stats: Stats) {
         view.progress = stats.base_stat?.toFloat() ?: 0.0f
         view.labelText = getString(R.string.pokemon_status_progress, stats.base_stat)
+    }
+
+    private fun setupBackground(type: String?) {
+        if (gradientColors.size >= 2) binding.layoutPokemon.background =
+            (GradientUtil.setBackgroundGradient(gradientColors))
+        else binding.layoutPokemon.setBackgroundResource(getTypeColor(type))
     }
 
 
