@@ -42,7 +42,6 @@ class PokemonDetailsActivity :
         receiveData()
         setupPokemonId()
 
-
     }
 
     private fun receiveData() {
