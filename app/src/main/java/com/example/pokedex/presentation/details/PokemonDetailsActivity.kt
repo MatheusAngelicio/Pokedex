@@ -8,14 +8,13 @@ import androidx.activity.viewModels
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.model.Results
+import com.example.pokedex.data.model.Stats
 import com.example.pokedex.data.model.Types
 import com.example.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.details.adapter.TypePokemonAdapter
-import com.example.pokedex.util.EXTRA_RESULTS
-import com.example.pokedex.util.SetupImageGlide
-import com.example.pokedex.util.convertValue
-import com.example.pokedex.util.formattedNumber
+import com.example.pokedex.util.*
+import com.skydoves.progressview.ProgressView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,7 +83,24 @@ class PokemonDetailsActivity :
                 )
             }
             pokemon.types?.let { setupPokemonType(it) }
+            pokemon.stats?.let { setupPokemonStats(it) }
         }
+    }
+
+    private fun setupPokemonStats(stats: List<Stats>) {
+        binding.includeStatusProgress.apply {
+            stats.getOrNull(HP)?.let { hp -> setupProgressStats(progressHp, hp) }
+            stats.getOrNull(ATK)?.let { atk -> setupProgressStats(progressAtk, atk) }
+            stats.getOrNull(DEF)?.let { def -> setupProgressStats(progressDef, def) }
+            stats.getOrNull(SPA)?.let { spa -> setupProgressStats(progressSpa, spa) }
+            stats.getOrNull(SPD)?.let { spd -> setupProgressStats(progressSpd, spd) }
+            stats.getOrNull(SPE)?.let { spe -> setupProgressStats(progressSpe, spe) }
+        }
+    }
+
+    private fun setupProgressStats(view: ProgressView, stats: Stats) {
+        view.progress = stats.base_stat?.toFloat() ?: 0.0f
+        view.labelText = getString(R.string.pokemon_status_progress, stats.base_stat)
     }
 
 
