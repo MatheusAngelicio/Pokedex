@@ -25,4 +25,9 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
+
+
+    <!-- error dialog -->
+    <string name="dialog_error_message">We coul not load your pokemon</string>
+
 </resources>

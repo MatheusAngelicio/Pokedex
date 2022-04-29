@@ -34,6 +34,7 @@ class PokemonDetailsViewModel
                         _getPokemonProperty.postValue(it)
                     }
                     isLoading.postValue(false)
+                    _error.postValue(false)
                 }
                 is Resource.Error -> {
                     _error.postValue(true)

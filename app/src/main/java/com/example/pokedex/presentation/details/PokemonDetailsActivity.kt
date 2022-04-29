@@ -66,10 +66,9 @@ class PokemonDetailsActivity :
             setupPokemonData(it)
         }
 
-        viewModel.error.observe(this) {
-            if (it) Toast.makeText(this, "Algo deu errado", Toast.LENGTH_LONG).show()
+        viewModel.error.observe(this) { error ->
+            setupDialogError(error)
         }
-
         viewModel.isLoading.observe(this) {
             binding.loader.visibility = if (it) View.VISIBLE else View.GONE
         }
@@ -123,5 +122,16 @@ class PokemonDetailsActivity :
         else binding.layoutPokemon.setBackgroundResource(getTypeColor(type))
     }
 
+    private fun setupDialogError(error: Boolean){
+        if (error) {
+            showErrorDetailsDaialog(getString(R.string.dialog_error_message),
+                true,
+                onConfirm = { finish() },
+                { super.onBackPressed() })
+            binding.blankLayout.visible()
+        } else {
+            binding.blankLayout.gone()
+        }
+    }
 
 }
