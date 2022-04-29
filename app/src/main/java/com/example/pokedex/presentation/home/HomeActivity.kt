@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Results
 import com.example.pokedex.databinding.ActivityHomeBinding
@@ -77,13 +78,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                 startActivity(PokemonDetailsActivity.getStartIntent(context, it))
             }
 
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                }
+            })
+
             addOnScrollListener(object :
                 PaginationListener(layoutManager as LinearLayoutManager, QUANTITY) {
                 override fun loadMoreItems() {
                     viewModel.limit += QUANTITY
                     viewModel.loadPokemonPaginated()
                 }
-                override val isLoading: Boolean get() = false
+
             })
         }
     }
