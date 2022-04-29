@@ -15,8 +15,10 @@
     <color name="black_translucent">#80000000</color>
     <color name="black_80">#CC000000</color>
     <color name="green_pokedex">#30fb05</color>
+    <color name="home_adapter_background">#90F3E292</color>
 
     <color name="background">#2B292B</color>
+    <color name="background_home">#6D86ADFC</color>
     <color name="background800">#424242</color>
     <color name="background900">#212121</color>
     <color name="bug">#179A55</color>
