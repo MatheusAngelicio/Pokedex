@@ -16,6 +16,7 @@ import com.example.pokedex.presentation.details.PokemonDetailsActivity
 import com.example.pokedex.presentation.home.adapter.PokemonAdapter
 import com.example.pokedex.util.QUANTITY
 import com.example.pokedex.util.currency.PaginationListener
+import com.example.pokedex.util.showConfirmationDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.view.*
 
@@ -36,6 +37,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         observeViewModel()
         setupRecyclerView()
 
+    }
+
+    override fun onBackPressed() {
+        showConfirmationDialog(
+            getString(R.string.dialog_title),
+            getString(R.string.dialog_message),
+            true,
+            { super.onBackPressed() })
     }
 
     private fun observeViewModel() {

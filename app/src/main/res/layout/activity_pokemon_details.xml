@@ -123,7 +123,7 @@
                     <View
                         android:layout_width="2dp"
                         android:layout_height="50dp"
-                        android:background="@color/gray" />
+                        android:background="@color/grey_dark" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"

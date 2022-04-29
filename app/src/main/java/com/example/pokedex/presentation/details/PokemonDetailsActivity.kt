@@ -80,7 +80,8 @@ class PokemonDetailsActivity :
         binding.apply {
             resultsData?.let { result ->
                 result.imageUrl = formattedNumber(result.number)
-                pokemonName.text = getString(R.string.pokemon_number, result.number.toString(), pokemon.name)
+                pokemonName.text =
+                    getString(R.string.pokemon_number, result.number.toString(), pokemon.name)
                 weightPokemon.text =
                     getString(R.string.pokemon_weight, convertValue(pokemon.weight))
                 heightPokemon.text =

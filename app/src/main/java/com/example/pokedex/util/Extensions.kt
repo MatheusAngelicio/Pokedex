@@ -1,6 +1,9 @@
 package com.example.pokedex.util
 
+import android.content.Context
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.example.pokedex.R
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -84,4 +87,41 @@ fun getTypeColor(type: String?): Int {
         "dark" -> R.color.dark
         else -> R.color.gray_21
     }
+}
+
+fun Context.showConfirmationDialog(
+    title: String,
+    message: String,
+    isCancelable: Boolean = true,
+    onConfirm: (() -> Unit)? = null,
+    onCancel: (() -> Unit)? = null,
+    onDismiss: (() -> Unit)? = null
+): AlertDialog {
+    val dialogView = View.inflate(this, R.layout.dialog_confirmation, null)
+    val dialog = AlertDialog.Builder(this)
+        .setView(dialogView)
+        .setCancelable(isCancelable)
+        .setOnDismissListener {
+            it.dismiss()
+            onDismiss?.invoke()
+        }
+        .create()
+
+    with(dialogView) {
+        dialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        findViewById<TextView>(R.id.textTittle).text = title
+        findViewById<TextView>(R.id.textMessage).text = message
+        findViewById<TextView>(R.id.buttonConfirm).setOnClickListener {
+            dialog.dismiss()
+            onConfirm?.invoke()
+        }
+        findViewById<TextView>(R.id.buttonCancel).setOnClickListener {
+            dialog.dismiss()
+            onCancel?.invoke()
+        }
+    }
+
+    dialog.show()
+
+    return dialog
 }

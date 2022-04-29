@@ -8,7 +8,12 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="gray">#729A9999</color>
+    <color name="grey_dark">#729A9999</color>
+    <color name="darker_grey">#454F63</color>
+    <color name="light_grey">#EDEEF0</color>
+    <color name="grey">#9DA2AC</color>
+    <color name="transparent">#00FFFFFF</color>
+
     <color name="white">#FFFFFFFF</color>
 
     <color name="blue">#0000FF</color>

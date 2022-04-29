@@ -13,6 +13,8 @@
         <entry key="..\:/Users/Matheus Angelicio/AndroidStudioProjects/Pokedex/app/src/main/res/layout/home_fragment.xml" value="0.153125" />
         <entry key="..\:/Users/Matheus Angelicio/AndroidStudioProjects/Pokedex/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Matheus Angelicio/AndroidStudioProjects/Pokedex/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/drawable/bg_search_highlight.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/drawable/dialog_confirmation.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/drawable/ic_baseline_height_24.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/drawable/shape_button_default.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/drawable/shape_frame_details.xml" value="0.19128205128205128" />
@@ -21,6 +23,7 @@
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_onboarding.xml" value="0.178125" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_pokemon_details.xml" value="0.2" />
+        <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/dialog_confirmation.xml" value="0.33" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_details.xml" value="0.1753846153846154" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/home_fragment.xml" value="0.1921875" />
         <entry key="..\:/Users/PremierSoft/AndroidStudioProjects/Pokedex/app/src/main/res/layout/include_status_progress.xml" value="0.25" />

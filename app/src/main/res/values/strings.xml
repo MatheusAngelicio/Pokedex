@@ -16,4 +16,11 @@
     <string name="pokemon_height">%s M</string>
     <string name="pokemon_weight">%s KG</string>
     <string name="pokemon_number">#%s %S</string>
+
+    <!-- confirmation dialog -->
+    <string name="dialog_title">Go out</string>
+    <string name="dialog_message">Are you sure you want to quit?</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
 </resources>
