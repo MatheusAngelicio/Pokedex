@@ -3,14 +3,12 @@ package com.example.pokedex.presentation.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.data.model.Results
 import com.example.pokedex.databinding.ActivityHomeBinding
 import com.example.pokedex.presentation.base.BaseActivity
 import com.example.pokedex.presentation.details.PokemonDetailsActivity
@@ -21,7 +19,6 @@ import com.example.pokedex.util.gone
 import com.example.pokedex.util.showConfirmationDialog
 import com.example.pokedex.util.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_home.view.*
 import kotlinx.android.synthetic.main.home_empty_state.view.*
 
 @AndroidEntryPoint
@@ -62,7 +59,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             binding.loader.visibility = if (it) VISIBLE else GONE
         }
 
-        viewModel.responseApi.observe(this) { pokemonList ->
+        viewModel.pokemonList.observe(this) { pokemonList ->
             pokeAdapter.data = pokemonList.toMutableList()
         }
 

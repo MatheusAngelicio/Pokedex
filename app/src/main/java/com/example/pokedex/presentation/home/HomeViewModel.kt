@@ -15,8 +15,8 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
 
-    private val _responseApi = MutableLiveData<List<Results>>()
-    val responseApi: LiveData<List<Results>> = _responseApi
+    private val _pokemonList = MutableLiveData<List<Results>>()
+    val pokemonList: LiveData<List<Results>> = _pokemonList
 
     private val _error = MutableLiveData<Boolean>()
     val error: LiveData<Boolean> = _error
@@ -36,7 +36,7 @@ class HomeViewModel
             val result = repository.getPokemonList(limit, offSet)
             when (result) {
                 is Resource.Success -> {
-                   _responseApi.value = result.data?.results
+                   _pokemonList.value = result.data?.results
                     isLoading.value = false
                     _error.postValue(false)
                 }
