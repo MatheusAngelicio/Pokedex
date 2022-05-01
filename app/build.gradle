@@ -57,7 +57,6 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
-    implementation "com.google.code.gson:gson:$gson"
 
     //HILT
     implementation "com.google.dagger:hilt-android:2.38.1"
@@ -66,23 +65,19 @@ dependencies {
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
 
-    //RETROFRIT
-    def retrofit_version = "2.9.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-
     // Glide (Image loader)
     implementation "com.github.bumptech.glide:glide:$glide"
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
 
-    // OkHttp, Retrofit and GSON
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitConverterGson"
+    // OkHttp, Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit") {
         // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
         exclude module: 'okhttp'
     }
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
@@ -96,12 +91,8 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$jUnitExt"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 
-    // progress view
+    // Progress view
     implementation "com.github.skydoves:progressview:$progressViewVersion"
-
-    // Stetho
-    implementation "com.facebook.stetho:stetho:$stethoVersion"
-    implementation "com.facebook.stetho:stetho-okhttp3:$stethoVersion"
 
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

@@ -34,7 +34,6 @@ ext {
     retrofitConverterGson = "2.5.0"
     retrofit = "2.9.0"
     okhttp = "3.12.0"
-    gson = "2.8.6"
 
     // Dependence injector
 
@@ -44,9 +43,6 @@ ext {
 
     //Lottie
     lottieVersion = "3.4.2"
-
-    // Debug
-    stethoVersion = "1.5.1"
 
     // progress view
     progressViewVersion = '1.1.1'
